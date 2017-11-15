@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+//Angular Material Required - Import once time in all project
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 
 @NgModule({
@@ -15,8 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     CommonModule,
     BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
