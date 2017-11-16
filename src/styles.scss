@@ -3,18 +3,12 @@
 /*Material desing default theme*/
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-/* Eliminar margin y padding que pone por defecto el navegador  */
-body, html {
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Sidenav de la misma altura que la ventana */
-  mat-sidenav-container {
-    height:100vh;
-  }
-  
-  /* centrar el logo */
-  .content {
-    text-align: center;
-  }
+//General reset
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
