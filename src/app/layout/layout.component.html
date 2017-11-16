@@ -1,8 +1,11 @@
+<div class="main-container">
+
+
 <mat-toolbar class="toolbar-header" color="primary">
   <span>Loans Aplication</span>
 </mat-toolbar>
 
-<mat-sidenav-container class="main-layout">
+<mat-sidenav-container >
   <mat-sidenav #mainSidenav class="main-sidenav" mode="side" opened="true">
     <mat-nav-list>
       <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
@@ -13,9 +16,18 @@
         <mat-icon matListIcon>people</mat-icon>
         <span matLine>Clientes</span>
       </a>
+      <a mat-list-item routerLink="/test" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>build</mat-icon>
+        <span matLine>test</span>
+      </a>
+      <a mat-list-item routerLink="/test" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>build</mat-icon>
+        <span matLine>test</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>
+</div>
