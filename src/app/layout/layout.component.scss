@@ -1,0 +1,32 @@
+//General reset
+html, body, main-content{ 
+  font-family: 'Roboto', 'Helvetica', sans-serif; 
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+//ToolBar
+.fill-remaining-space {
+  // This fills the remaining space, by using flexbox. 
+  // Every toolbar row uses a flexbox row layout.
+  flex: 1 1 auto;
+}
+
+//Principal container
+.main-container{
+  border: 1px solid rgba(111, 111, 111, 0.50)
+}
+
+//SideNav
+.sidenav {
+  width: 200px;    
+  padding-top: 10px;
+}
+
+//contenent
+.main-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
