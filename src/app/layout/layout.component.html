@@ -1,11 +1,8 @@
-<div class="main-container">
-
-
 <mat-toolbar class="toolbar-header" color="primary">
   <span>Loans Aplication</span>
 </mat-toolbar>
 
-<mat-sidenav-container >
+<mat-sidenav-container class="main-container">
   <mat-sidenav #mainSidenav class="main-sidenav" mode="side" opened="true">
     <mat-nav-list>
       <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
@@ -30,4 +27,3 @@
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>
-</div>
