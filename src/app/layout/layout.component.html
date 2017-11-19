@@ -26,6 +26,9 @@
       </mat-nav-list>
     </mat-sidenav>
     <div class="main-content">
+        <button type="button" mat-button (click)="mainSidenav.toggle()">
+            Open sidenav
+          </button>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-container>
