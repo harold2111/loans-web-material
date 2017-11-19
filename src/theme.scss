@@ -1,0 +1,49 @@
+//@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+// Primary:       rgb(3,169,244);  #03A9F4  /MD Light Blue: 500
+// Primary ligh:  rgb(2,119,189);  #B3E5FC  /MD-Light Blue: 100
+// Primary Dark:  rgb(2,119,189);  #0277BD  /MD-Light Blue: 800
+$default-theme-primary: mat-palette($mat-light-blue, 500, 100, 800);
+$default-theme-accent: mat-palette($mat-pink, A200, A100, A400);
+$default-theme-warn: mat-palette($mat-red); // The warn palette is optional (defaults to red).
+
+// Create the theme object (a Sass map containing all of the palettes).
+$default-theme: mat-light-theme($default-theme-primary, $default-theme-accent, $default-theme-warn);
+
+
+@mixin angular-toolbar-theme($theme) {
+  
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+  
+    .mat-toolbar {
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+      background: mat-color($primary);
+      color: mat-color($primary, default-contrast);
+      &.mat-primary-darker {
+        background: mat-color($primary, darker);  
+      }
+    }
+    
+  }
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+.default-theme{
+  @include angular-material-theme($default-theme);
+  @include angular-toolbar-theme($default-theme);
+}
