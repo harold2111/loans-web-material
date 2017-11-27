@@ -22,8 +22,7 @@ $default-theme-warn: mat-palette($mat-red); // The warn palette is optional (def
 $default-theme: mat-light-theme($default-theme-primary, $default-theme-accent, $default-theme-warn);
 
 
-@mixin angular-toolbar-theme($theme) {
-  
+@mixin angular-toolbar-theme($theme) {  
     $primary: map-get($theme, primary);
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
@@ -36,8 +35,7 @@ $default-theme: mat-light-theme($default-theme-primary, $default-theme-accent, $
       &.mat-primary-darker {
         background: mat-color($primary, darker);  
       }
-    }
-    
+    }    
   }
 
 // Include theme styles for core and each component used in your app.
