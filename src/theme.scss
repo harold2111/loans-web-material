@@ -26,13 +26,11 @@ $default-theme: mat-light-theme($default-theme-primary, $default-theme-accent, $
     $primary: map-get($theme, primary);
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-  
-    .mat-toolbar {
-      box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-      background: mat-color($primary);
-      color: mat-color($primary, default-contrast);
+    $foreground: map-get($theme, foreground);  
+    .mat-toolbar {            
       &.mat-primary-darker {
+        background: mat-color($primary);
+        color: mat-color($primary, default-contrast);
         background: mat-color($primary, darker);  
       }
     }    
