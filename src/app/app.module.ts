@@ -5,6 +5,9 @@ import { NgModule } from '@angular/core';
 //Angular Material Required - Import once time in all project
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//Flex
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -17,7 +20,8 @@ import { AppComponent } from './app.component';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule    
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

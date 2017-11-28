@@ -6,12 +6,15 @@ import { LayoutComponent } from './layout.component';
 
 // Material Design Component
 import {MaterialModule} from '../material.module'
+//Flex
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   imports: [
     CommonModule,    
     LayoutRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   declarations: [LayoutComponent]
 })

@@ -1,32 +1,29 @@
-<div class="wrapper mat-app-background default-theme">
-  <header>
-    <mat-toolbar color="primary-darker">
-      <span>Loans Aplication</span>
-    </mat-toolbar>
-  </header>
-  <mat-sidenav-container class="main-container">
-    <mat-sidenav #mainSidenav class="main-sidenav" mode="side" opened="true">
-      <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
-          <mat-icon matListIcon>dashboard</mat-icon>
-          <span matLine>Dashboard</span>
-        </a>
-        <a mat-list-item routerLink="/client" [routerLinkActive]="['router-link-active']">
-          <mat-icon matListIcon>people</mat-icon>
-          <span matLine>Clientes</span>
-        </a>
-        <a mat-list-item routerLink="/test" [routerLinkActive]="['router-link-active']">
-          <mat-icon matListIcon>build</mat-icon>
-          <span matLine>test</span>
-        </a>
-        <a mat-list-item routerLink="/test" [routerLinkActive]="['router-link-active']">
-          <mat-icon matListIcon>build</mat-icon>
-          <span matLine>test</span>
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-container>
-</div>
+
+<mat-toolbar color="primary-darker">
+  <span>Loans Aplication</span>
+</mat-toolbar>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav #mainSidenav class="main-sidenav" mode="side" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>dashboard</mat-icon>
+        <span matLine>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/client" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>people</mat-icon>
+        <span matLine>Clientes</span>
+      </a>
+      <a mat-list-item routerLink="/test" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>build</mat-icon>
+        <span matLine>test</span>
+      </a>
+      <a mat-list-item routerLink="/test" [routerLinkActive]="['router-link-active']">
+        <mat-icon matListIcon>build</mat-icon>
+        <span matLine>test</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
