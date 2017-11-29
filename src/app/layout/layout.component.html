@@ -1,9 +1,10 @@
 <mat-sidenav-container class="main-container">
   <mat-sidenav #mainSidenav class="main-sidenav" mode="side" opened="true">
-    <mat-toolbar color="primary-darker" class="logo">
+    <mat-toolbar class="logo">
       <span>Loans Aplication</span>
     </mat-toolbar>
-    <mat-nav-list>
+    <mat-divider></mat-divider>
+    <mat-nav-list class="nav">
       <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
         <mat-icon matListIcon>dashboard</mat-icon>
         <span matLine>Dashboard</span>

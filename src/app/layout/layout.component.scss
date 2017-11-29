@@ -1,12 +1,51 @@
+mat-sidenav-container {
+  height: 100%;
+
+  //SideNav
+  /*
+  NOTAS: mattoolbar have font definition
+  */
+  mat-sidenav, .logo {
+    background: #fff;
+  }
+  mat-sidenav {
+    width: 260px;
+    box-shadow: 0 10px 30px -12px rgba(0,0,0,.42), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+    .logo {
+      text-transform: uppercase;
+    }
+    mat-nav-list.nav {
+      padding-top: 0;
+      margin-top: 20px;
+
+      > a {
+        margin: 10px 15px;
+        
+        span.mat-line {
+          margin: 0;
+          line-height: 30px;
+          font-size: 14px;
+
+          font-family: Roboto,Helvetica,Arial,sans-serif;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 
 //Principal container
 .main-container {
   border:1px solid rgba(111, 111, 111, 0.50);
-}
-
-//SideNav
-.main-sidenav {
-  width: 200px;
 }
 
 //Principal content
@@ -30,6 +69,3 @@ h2 {
   font-weight: 400;
 }
 
-mat-sidenav-container {
-  height: 100%;
-}
