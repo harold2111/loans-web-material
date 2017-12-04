@@ -1,0 +1,11 @@
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, Helvetica, Arial, sans-serif',
+  $headline: mat-typography-level($font-size-h1, $line-height-base, $font-weight-base), /*h1*/
+  $title: mat-typography-level(18px, $line-height-base, $font-weight-base), /*h2*/
+  $subheading-2: mat-typography-level($font-size-base, $line-height-base, $font-weight-base), /*h3*/
+  $subheading-1: mat-typography-level($font-size-h4, $line-height-base $font-weight-base), /*h4*/
+  $body-1: mat-typography-level($font-size-base, $line-height-base, $font-weight-base)
+);
+
+@include angular-material-typography($custom-typography);

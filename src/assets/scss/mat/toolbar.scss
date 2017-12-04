@@ -1,0 +1,16 @@
+
+@mixin angular-toolbar-theme($theme) {  
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);  
+  .mat-toolbar {            
+    &.mat-primary-darker {
+      background: mat-color($primary);
+      color: mat-color($primary, default-contrast);
+      background: mat-color($primary, darker);  
+    }
+  }    
+}
+
+@include angular-toolbar-theme($default-theme);
