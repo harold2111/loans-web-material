@@ -1,0 +1,58 @@
+
+mat-sidenav-container {
+  height: 100%;
+
+  mat-sidenav.mat-sidenav, mat-toolbar.mat-toolbar {
+    background: #fff;
+  }
+
+  mat-divider.mat-divider{
+    position: absolute;
+    right: 10%;
+    width: 80%;
+    background-color: rgba(180,180,180, .3);
+  }
+
+  mat-sidenav.mat-sidenav {
+    width: 260px;
+    box-shadow: 0 10px 30px -12px rgba(0,0,0,.42), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+    mat-nav-list.mat-nav-list {
+      padding-top: 0;
+      margin-top: 20px;
+
+      > a {
+        margin: 10px 15px;
+      }
+    }
+  }
+
+}
+
+
+/*
+//Principal container
+.main-container {
+  border:1px solid rgba(111, 111, 111, 0.50);
+}
+
+//Principal content
+.main-content{
+  box-sizing: border-box;
+}
+
+//Utils
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+//-----
+$gray: #ededed;
+
+.main-sidenav {
+  fill: #737373;
+}
+
+h2 {
+  font-weight: 400;
+}
+*/
