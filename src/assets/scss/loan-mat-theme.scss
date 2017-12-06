@@ -6,6 +6,7 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 @import "mat/variables";
+@import "mat/shadows";
 
 @import "mat/default-theme";
 @import "mat/typography";
