@@ -17,7 +17,7 @@ import {switchMap} from 'rxjs/operators/switchMap';
 })
 export class ClientComponent implements AfterViewInit {
   displayedColumns = ['created', 'state', 'number', 'title'];
-  //exampleDatabase: ExampleHttpDao | null;
+  exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
   resultsLength = 0;
@@ -30,12 +30,12 @@ export class ClientComponent implements AfterViewInit {
   constructor(private http: HttpClient) {}
 
   ngAfterViewInit() {
-    //this.exampleDatabase = new ExampleHttpDao(this.http);
+    this.exampleDatabase = new ExampleHttpDao(this.http);
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    /*merge(this.sort.sortChange, this.paginator.page)
+    merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -57,11 +57,11 @@ export class ClientComponent implements AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.dataSource.data = data);*/
+      ).subscribe(data => this.dataSource.data = data);
   }
 }
 
-/*export interface GithubApi {
+export interface GithubApi {
   items: GithubIssue[];
   total_count: number;
 }
@@ -71,10 +71,10 @@ export interface GithubIssue {
   number: string;
   state: string;
   title: string;
-}*/
+}
 
 /** An example database that the data source uses to retrieve data for the table. */
-/*export class ExampleHttpDao {
+export class ExampleHttpDao {
   constructor(private http: HttpClient) {}
 
   getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
@@ -82,4 +82,4 @@ export interface GithubIssue {
     const requestUrl = `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
     return this.http.get<GithubApi>(requestUrl);
   }
-}*/
+}
