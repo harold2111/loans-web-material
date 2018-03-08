@@ -7,11 +7,14 @@ import { ClientComponent } from './components/client.component';
 // Material Design Component
 import {MaterialModule} from '../../material.module'
 
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 @NgModule({
   imports: [
     CommonModule,
     ClientRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   declarations: [
     ClientComponent
