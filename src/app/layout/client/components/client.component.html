@@ -9,19 +9,22 @@
         <span>Clientes</span>
         <span class="fill-spacer"></span>
         <div class="button-row">
-          <button mat-raised-button color="primary">Nuevo Cliente</button>
+          <button mat-raised-button color="primary">
+            <mat-icon>add</mat-icon>
+            <span>Nuevo Cliente</span>
+          </button>
         </div>
       </mat-toolbar-row>
-
       <mat-toolbar-row>
         <mat-form-field class="search-row" floatPlaceholder="never" fxFlex="70">
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
         <span class="fill-spacer"></span>
-        <mat-icon>autorenew</mat-icon>
+        <button mat-icon-button>
+            <mat-icon>autorenew</mat-icon>
+        </button>        
       </mat-toolbar-row>
     </mat-toolbar>
-
 
     <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -33,6 +36,19 @@
     <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
       <!--- Note that these columns can be defined in any order.
          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Options Column -->
+      <ng-container matColumnDef="options">
+        <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+        <mat-cell *matCellDef>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Edit</button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
 
       <!-- Number Column -->
       <ng-container matColumnDef="number">
@@ -60,8 +76,11 @@
         <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
       </ng-container>
 
+
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
     </mat-table>
 
     <mat-paginator #paginator [length]="resultsLength" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">

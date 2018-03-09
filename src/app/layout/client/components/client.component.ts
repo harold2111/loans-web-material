@@ -16,7 +16,7 @@ import {switchMap} from 'rxjs/operators/switchMap';
   encapsulation: ViewEncapsulation.None
 })
 export class ClientComponent implements AfterViewInit {
-  displayedColumns = ['created', 'state', 'number', 'title'];
+  displayedColumns = ['created', 'state', 'number', 'title', 'options'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
