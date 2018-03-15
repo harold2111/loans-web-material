@@ -25,7 +25,11 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar></mat-toolbar>
-    <app-messages></app-messages>
-    <router-outlet></router-outlet>    
+    <div class="main-content">
+      <mat-card>
+        <app-messages></app-messages>
+        <router-outlet></router-outlet>    
+      </mat-card>
+    </div>    
   </mat-sidenav-content>
 </mat-sidenav-container>

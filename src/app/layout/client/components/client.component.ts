@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators/map';
 import {startWith} from 'rxjs/operators/startWith';
 import {switchMap} from 'rxjs/operators/switchMap';
 import { ClientService } from '../services/client.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -28,6 +29,7 @@ export class ClientComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private route: Router,
     private http: HttpClient,
     private clientService: ClientService) {}
 
@@ -57,6 +59,10 @@ export class ClientComponent implements AfterViewInit {
           return observableOf([]);
         })
       ).subscribe(data => this.dataSource.data = data);
+  }
+
+  openCreateClientComponent(): void {
+    this.route.navigate(['/createClient']);
   }
 }
 

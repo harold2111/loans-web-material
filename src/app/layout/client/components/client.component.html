@@ -1,94 +1,85 @@
-<div class="main-content">
-
-
-
-  <mat-card>
-
-    <mat-toolbar class="main-toolbar">
-      <mat-toolbar-row>
-        <span>Clientes</span>
-        <span class="fill-spacer"></span>
-        <div class="button-row">
-          <button mat-raised-button color="primary">
-            <mat-icon>add</mat-icon>
-            <span>Nuevo Cliente</span>
-          </button>
-        </div>
-      </mat-toolbar-row>
-      <mat-toolbar-row>
-        <mat-form-field class="search-row" floatPlaceholder="never" fxFlex="70">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-        <span class="fill-spacer"></span>
-        <button mat-icon-button>
-          <mat-icon>autorenew</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
-
-    <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-        GitHub's API rate limit has been reached. It will be reset in one minute.
-      </div>
+<mat-toolbar class="main-toolbar">
+  <mat-toolbar-row>
+    <span>Clientes</span>
+    <span class="fill-spacer"></span>
+    <div class="button-row">
+      <button (click)="openCreateClientComponent()" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon>
+        <span>Nuevo Cliente</span>
+      </button>
     </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-form-field class="search-row" floatPlaceholder="never" fxFlex="70">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <span class="fill-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>autorenew</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-    <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
-
-      <!--- The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- identification Column -->
-      <ng-container matColumnDef="identification">
-        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Identificación
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.identification }}</mat-cell>
-      </ng-container>
-
-      <!-- firstName Column -->
-      <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Nombres
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
-      </ng-container>
-
-      <!-- lastName Column -->
-      <ng-container matColumnDef="lastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Apellidos
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
-      </ng-container>
-
-      <!-- telephone1 Column -->
-      <ng-container matColumnDef="telephone1">
-        <mat-header-cell *matHeaderCellDef>Telefono</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.telephone1 }}</mat-cell>
-      </ng-container>
-
-      <!-- Options Column -->
-      <ng-container matColumnDef="options">
-        <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
-        <mat-cell *matCellDef>
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>Edit</button>
-          </mat-menu>
-        </mat-cell>
-      </ng-container>
-
-
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-    </mat-table>
-
-    <mat-paginator #paginator [length]="resultsLength" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
-    </mat-paginator>
-
-  </mat-card>
+<div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+    GitHub's API rate limit has been reached. It will be reset in one minute.
+  </div>
 </div>
+
+<mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+
+  <!--- The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- identification Column -->
+  <ng-container matColumnDef="identification">
+    <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+      Identificación
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.identification }}</mat-cell>
+  </ng-container>
+
+  <!-- firstName Column -->
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+      Nombres
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
+  </ng-container>
+
+  <!-- lastName Column -->
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+      Apellidos
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
+  </ng-container>
+
+  <!-- telephone1 Column -->
+  <ng-container matColumnDef="telephone1">
+    <mat-header-cell *matHeaderCellDef>Telefono</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.telephone1 }}</mat-cell>
+  </ng-container>
+
+  <!-- Options Column -->
+  <ng-container matColumnDef="options">
+    <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+    <mat-cell *matCellDef>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Edit</button>
+      </mat-menu>
+    </mat-cell>
+  </ng-container>
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+
+<mat-paginator #paginator [length]="resultsLength" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

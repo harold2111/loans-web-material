@@ -9,6 +9,7 @@ import {MaterialModule} from '../../material.module'
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ClientService } from './services/client.service';
+import { CreateClientComponent } from './components/create-client/create-client.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ClientService } from './services/client.service';
     FlexLayoutModule
   ],
   declarations: [
-    ClientComponent
+    ClientComponent,
+    CreateClientComponent
   ],
   providers: [
     ClientService
