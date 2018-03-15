@@ -8,6 +8,8 @@ import { LayoutComponent } from './layout.component';
 import {MaterialModule} from '../material.module'
 //Flex
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MessagesComponent } from './shared/components/messages/messages.component';
+import { MessageService } from './shared/services/message.service';
 
 @NgModule({
   imports: [
@@ -16,6 +18,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MaterialModule,
     FlexLayoutModule
   ],
-  declarations: [LayoutComponent]
+  declarations: [
+    LayoutComponent, 
+    MessagesComponent
+  ],
+  providers: [
+    MessageService
+  ],
 })
 export class LayoutModule { }

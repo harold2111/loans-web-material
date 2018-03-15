@@ -21,8 +21,8 @@
         </mat-form-field>
         <span class="fill-spacer"></span>
         <button mat-icon-button>
-            <mat-icon>autorenew</mat-icon>
-        </button>        
+          <mat-icon>autorenew</mat-icon>
+        </button>
       </mat-toolbar-row>
     </mat-toolbar>
 
@@ -34,8 +34,38 @@
     </div>
 
     <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
-      <!--- Note that these columns can be defined in any order.
-         The actual rendered columns are set as a property on the row definition" -->
+
+      <!--- The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- identification Column -->
+      <ng-container matColumnDef="identification">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Identificación
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.identification }}</mat-cell>
+      </ng-container>
+
+      <!-- firstName Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Nombres
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
+      </ng-container>
+
+      <!-- lastName Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Apellidos
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
+      </ng-container>
+
+      <!-- telephone1 Column -->
+      <ng-container matColumnDef="telephone1">
+        <mat-header-cell *matHeaderCellDef>Telefono</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.telephone1 }}</mat-cell>
+      </ng-container>
 
       <!-- Options Column -->
       <ng-container matColumnDef="options">
@@ -48,32 +78,6 @@
             <button mat-menu-item>Edit</button>
           </mat-menu>
         </mat-cell>
-      </ng-container>
-
-      <!-- Number Column -->
-      <ng-container matColumnDef="number">
-        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.number }}</mat-cell>
-      </ng-container>
-
-      <!-- Title Column -->
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
-      </ng-container>
-
-      <!-- State Column -->
-      <ng-container matColumnDef="state">
-        <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.state }}</mat-cell>
-      </ng-container>
-
-      <!-- Created Column -->
-      <ng-container matColumnDef="created">
-        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Created
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
       </ng-container>
 
 

@@ -8,6 +8,8 @@ import { ClientComponent } from './components/client.component';
 import {MaterialModule} from '../../material.module'
 
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ClientService } from './services/client.service';
+
 
 @NgModule({
   imports: [
@@ -18,6 +20,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
   ],
   declarations: [
     ClientComponent
+  ],
+  providers: [
+    ClientService
   ]
 })
 export class ClientModule { }
