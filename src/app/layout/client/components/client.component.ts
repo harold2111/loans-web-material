@@ -18,7 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class ClientComponent implements AfterViewInit {
-  displayedColumns = ['identification','firstName', 'lastName', 'telephone1', 'options'];
+  displayedColumns = ['identification', 'firstName', 'lastName', 'telephone1', 'options'];
   dataSource = new MatTableDataSource();
 
   resultsLength = 0;
