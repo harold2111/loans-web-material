@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('loans-web-material App', () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('loans-web-material App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('Welcome to ng6-scss!');
   });
 });

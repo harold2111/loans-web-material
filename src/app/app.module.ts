@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule }    from '@angular/common/http';
-//Angular Material Required - Import once time in all project
+import { HttpClientModule } from '@angular/common/http';
+// Angular Material Required - Import once time in all project
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule        
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

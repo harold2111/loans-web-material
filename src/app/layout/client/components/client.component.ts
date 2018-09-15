@@ -1,15 +1,11 @@
-import { Component, AfterViewInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
-import {merge} from 'rxjs/observable/merge';
-import {of as observableOf} from 'rxjs/observable/of';
-import {catchError} from 'rxjs/operators/catchError';
-import {map} from 'rxjs/operators/map';
-import {startWith} from 'rxjs/operators/startWith';
-import {switchMap} from 'rxjs/operators/switchMap';
+import {merge, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { ClientService } from '../services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Client } from '../models/Client';
 
 @Component({
   selector: 'app-client',
@@ -17,12 +13,12 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./client.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ClientComponent implements AfterViewInit {
-  displayedColumns = ['identification','firstName', 'lastName', 'telephone1', 'options'];
-  dataSource = new MatTableDataSource();
+export class ClientComponent implements OnInit {
+  displayedColumns = ['identification', 'firstName', 'lastName', 'telephone1', 'options'];
+  data: Client[] = [];
 
   resultsLength = 0;
-  isLoadingResults = false;
+  isLoadingResults = true;
   isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +29,7 @@ export class ClientComponent implements AfterViewInit {
     private http: HttpClient,
     private clientService: ClientService) {}
 
-  ngAfterViewInit() {
+    ngOnInit() {
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -43,7 +39,7 @@ export class ClientComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.clientService!.getClients();
+          return this.clientService.getClients();
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -58,7 +54,7 @@ export class ClientComponent implements AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.dataSource.data = data);
+      ).subscribe(data => this.data = data);
   }
 
   openCreateClientComponent(): void {

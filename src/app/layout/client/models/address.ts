@@ -3,5 +3,4 @@ export class Address {
   clientID: number;
   address: string;
   cityID: number;
-
 }
