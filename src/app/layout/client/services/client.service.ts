@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { Client } from '../models/Client';
-import { of } from 'rxjs/observable/of';
+import { Observable, of as observableOf } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../../shared/services/message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 
-      'Content-Type': 'application/json', 
-      'Access-Control-Allow-Origin': '*' 
+  headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     })
 };
 
@@ -17,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class ClientService {
 
-  private clientsUrl = 'http://localhost:1323/api/clients'; 
+  private clientsUrl = 'http://localhost:1323/api/clients';
 
   constructor(
     private http: HttpClient,
@@ -47,7 +46,7 @@ export class ClientService {
       this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      return observableOf(result as T);
     };
   }
 

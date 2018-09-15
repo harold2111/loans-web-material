@@ -5,7 +5,7 @@ import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './components/client.component';
 
 // Material Design Component
-import {MaterialModule} from '../../material.module'
+import {MaterialModule} from '../../material.module';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ClientService } from './services/client.service';
