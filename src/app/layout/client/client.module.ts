@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './components/client.component';
@@ -15,6 +16,7 @@ import { CreateClientComponent } from './components/create-client/create-client.
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ClientRoutingModule,
     MaterialModule,
     FlexLayoutModule

@@ -2,39 +2,41 @@
 
   <div fxLayout="row" fxLayoutGap="20px">
     <mat-form-field fxFlex fxFlex="33">
-      <input matInput placeholder="Identificación">
+      <input matInput [(ngModel)]="client.identification" placeholder="Identificación" >
     </mat-form-field>
     <mat-form-field fxFlex="33">
-      <input matInput placeholder="Nombres">
+      <input [(ngModel)]="client.firstName" matInput placeholder="Nombres">
     </mat-form-field>
     <mat-form-field fxFlex>
-      <input matInput placeholder="Apellidos">
+      <input [(ngModel)]="client.lastName" matInput placeholder="Apellidos">
     </mat-form-field>
   </div>
 
   <div fxLayout="row" fxLayoutGap="20px">
     <mat-form-field fxFlex="33">
-      <input matInput placeholder="Telefono 1">
+      <input [(ngModel)]="client.telephone1" matInput placeholder="Telefono 1">
     </mat-form-field>
     <mat-form-field fxFlex="33">
-      <input matInput placeholder="Telefono 2">
+      <input [(ngModel)]="client.telephone2" matInput placeholder="Telefono 2">
     </mat-form-field>
   </div>
 
   <div fxLayout="row" fxLayoutGap="20px">
     <mat-form-field fxFlex="50">
-      <input matInput placeholder="Direccion">
+      <input [(ngModel)]="client.address.address" matInput placeholder="Direccion">
     </mat-form-field>
     <mat-form-field fxFlex="50">
-      <mat-select placeholder="Ciudad">
-        <mat-option value="1">Barranquilla</mat-option>
-        <mat-option value="2">Medellin</mat-option>
+      <mat-select [(ngModel)]="client.address.cityID" placeholder="Ciudad">
+        <!-- value between [] for numeric values-->
+        <mat-option [value]="1">Barranquilla</mat-option>
+        <mat-option [value]="2">Medellin</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div fxLayout="row-reverse" fxLayoutGap="20px">
-    <button (click)="goBack()">go back</button>
+    <button (click)="saveClient()">Guardar</button>
+    <button (click)="goBack()">Cancelar</button>    
   </div>
 
 </div>

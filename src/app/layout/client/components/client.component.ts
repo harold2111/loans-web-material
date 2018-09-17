@@ -19,7 +19,6 @@ export class ClientComponent implements OnInit {
 
   resultsLength = 0;
   isLoadingResults = true;
-  isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -44,14 +43,11 @@ export class ClientComponent implements OnInit {
         map(data => {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
-          this.isRateLimitReached = false;
           this.resultsLength = data.length;
           return data;
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
           return observableOf([]);
         })
       ).subscribe(data => this.data = data);
