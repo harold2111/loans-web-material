@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { ClientRoutingModule } from './client-routing.module';
-import { ClientComponent } from './components/client.component';
-
 // Material Design Component
 import {MaterialModule} from '../../material.module';
-
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { CreateClientComponent } from './components/create-client/create-client.component';
+
+import { ClientRoutingModule } from './client-routing.module';
+import { ClientListComponent } from './components/client-list/client-list.component';
+import { ClientCreateEditComponent } from './components/client-create-edit/client-create-edit.component';
 
 
 @NgModule({
@@ -21,8 +19,8 @@ import { CreateClientComponent } from './components/create-client/create-client.
     FlexLayoutModule
   ],
   declarations: [
-    ClientComponent,
-    CreateClientComponent
+    ClientListComponent,
+    ClientCreateEditComponent
   ],
   providers: [
   ]

@@ -32,11 +32,27 @@ export class ClientService {
       );
   }
 
+  getClientById(clientID: number): Observable<Client> {
+    return this.http.get<Client>(this.backendUrl + '/clients/' + clientID)
+      .pipe(
+        tap((clientResponse) => this.log('fetched client')),
+        catchError(this.handleError('getClientById', new Client()))
+      );
+  }
+
   createClient(client: Client): Observable<Client> {
     return this.http.post<Client>(this.backendUrl + '/clients', client)
       .pipe(
         tap(createClientResponse => this.log(`created client id=${createClientResponse.id}`)),
         catchError(this.handleError('createClient', client))
+      );
+  }
+
+  editClient(clientID: number, client: Client): Observable<Client> {
+    return this.http.put<Client>(this.backendUrl + '/clients/' + clientID, client)
+      .pipe(
+        tap(updateClientResponse => this.log(`editClient client id=${updateClientResponse.id}`)),
+        catchError(this.handleError('editClient', client))
       );
   }
 
