@@ -9,7 +9,6 @@ import {MaterialModule} from '../material.module';
 // Flex
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MessagesComponent } from './shared/components/messages/messages.component';
-import { MessageService } from './shared/services/message.service';
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { MessageService } from './shared/services/message.service';
     MessagesComponent
   ],
   providers: [
-    MessageService
   ],
 })
 export class LayoutModule { }

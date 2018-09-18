@@ -1,39 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Client } from '../models/Client';
-import { Observable, of as observableOf, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { MessageService } from '../../shared/services/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    })
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  })
 };
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ClientService {
 
-  private clientsUrl = 'http://localhost:1323/api';
+  private backendUrl = 'http://localhost:1323/api';
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
   getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.clientsUrl + '/clients')
+    return this.http.get<Client[]>(this.backendUrl + '/clients')
       .pipe(
-        tap(clients => this.log('fetched clients')),
+        tap(() => this.log('fetched clients')),
         catchError(this.handleError('getClients', []))
       );
   }
 
   createClient(client: Client): Observable<Client> {
-    return this.http.post<Client>(this.clientsUrl + '/clients', client)
+    return this.http.post<Client>(this.backendUrl + '/clients', client)
       .pipe(
-        tap(createClientResponse => console.log(`created client id=${createClientResponse.id}`)),
+        tap(createClientResponse => this.log(`created client id=${createClientResponse.id}`)),
         catchError(this.handleError('createClient', client))
       );
   }
@@ -57,7 +59,7 @@ export class ClientService {
 
       // Let the app keep running by returning an empty result.
       // return observableOf(result as T);
-       return throwError(errrorMessage);
+      return throwError(errrorMessage);
     };
   }
 

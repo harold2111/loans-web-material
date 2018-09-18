@@ -9,7 +9,6 @@ import { ClientComponent } from './components/client.component';
 import {MaterialModule} from '../../material.module';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { ClientService } from './services/client.service';
 import { CreateClientComponent } from './components/create-client/create-client.component';
 
 
@@ -26,7 +25,6 @@ import { CreateClientComponent } from './components/create-client/create-client.
     CreateClientComponent
   ],
   providers: [
-    ClientService
   ]
 })
 export class ClientModule { }
