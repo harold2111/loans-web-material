@@ -11,11 +11,11 @@ import { City } from '../../../shared/model/city';
 
 
 @Component({
-  selector: 'app-client-create',
-  templateUrl: './client-create-edit.component.html',
-  styleUrls: ['./client-create-edit.component.scss']
+  selector: 'app-client-form',
+  templateUrl: './client-form.component.html',
+  styleUrls: ['./client-form.component.scss']
 })
-export class ClientCreateEditComponent implements OnInit {
+export class ClientFormComponent implements OnInit {
 
   private client: Client;
   private departments: Department[];
@@ -72,20 +72,20 @@ export class ClientCreateEditComponent implements OnInit {
     });
   }
 
-  goBack(): void {
+  onCancel(): void {
     this.location.back();
   }
 
-  saveClient(): void {
-    this.clientService.createClient(this.client).subscribe(client => {
-      this.goBack();
-    });
-  }
-
-  editClient(): void {
-    this.clientService.editClient(this.selectedId, this.client).subscribe(client => {
-      //this.goBack();
-    });
+  onSave(): void {
+    if (this.isEditMode) {
+      this.clientService.editClient(this.selectedId, this.client).subscribe(client => {
+        this.location.back();
+      });
+    } else {
+      this.clientService.createClient(this.client).subscribe(client => {
+        this.location.back();
+      });
+    }
   }
 
 }

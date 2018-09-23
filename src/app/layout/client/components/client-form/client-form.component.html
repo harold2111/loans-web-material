@@ -1,3 +1,4 @@
+
 <div fxLayout="column">
 
   <div *ngIf="isEditMode" fxLayout="row" fxLayoutGap="20px">
@@ -48,9 +49,8 @@
   </div>
 
   <div fxLayout="row-reverse" fxLayoutGap="20px">
-    <button *ngIf="!isEditMode" (click)="saveClient()">Guardar</button>
-    <button *ngIf="isEditMode" (click)="editClient()">Guardar</button>
-    <button (click)="goBack()">Cancelar</button>
+    <button (click)="onSave()"  mat-raised-button color="warn">Guardar</button>
+    <button (click)="onCancel()"  mat-raised-button color="primary">Cancelar</button>
   </div>
 
 </div>

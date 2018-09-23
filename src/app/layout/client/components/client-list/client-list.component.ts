@@ -52,11 +52,11 @@ export class ClientListComponent implements OnInit {
   }
 
   openCreateClientComponent(): void {
-    this.router.navigate(['/client-create-edit']);
+    this.router.navigate(['/client-form']);
   }
 
   edit(id: number): void {
-    this.router.navigate(['/client-create-edit', id]);
+    this.router.navigate(['/client-form', id]);
   }
 }
 

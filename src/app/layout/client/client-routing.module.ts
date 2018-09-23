@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ClientListComponent } from './components/client-list/client-list.component';
-import { ClientCreateEditComponent } from './components/client-create-edit/client-create-edit.component';
+import { ClientFormComponent } from './components/client-form/client-form.component';
 
 const routes: Routes = [
   {
@@ -12,10 +12,10 @@ const routes: Routes = [
     path: 'client-list', component: ClientListComponent
   },
   {
-    path: 'client-create-edit', component: ClientCreateEditComponent
+    path: 'client-form', component: ClientFormComponent
   },
   {
-    path: 'client-create-edit/:id', component: ClientCreateEditComponent
+    path: 'client-form/:id', component: ClientFormComponent
   }
 ];
 
