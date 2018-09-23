@@ -25,20 +25,23 @@
     <mat-form-field fxFlex="33">
       <input [(ngModel)]="client.telephone2" matInput placeholder="Telefono 2">
     </mat-form-field>
+    <mat-form-field fxFlex>
+      <input [(ngModel)]="client.email" matInput placeholder="Email">
+    </mat-form-field>
   </div>
 
-  <div fxLayout="row" fxLayoutGap="20px">
+  <div *ngIf="!isEditMode" fxLayout="row" fxLayoutGap="20px">
     <mat-form-field fxFlex="33">
-      <input [(ngModel)]="client.address.address" matInput placeholder="Direccion">
+      <input [(ngModel)]="client.addresses[0].stretAddress" matInput placeholder="Direccion">
     </mat-form-field>
     <mat-form-field fxFlex="33">
-      <mat-select [(ngModel)]="departmentIdSelected" (ngModelChange)="fillCitiesBySelectedDepartment($event)"
+      <mat-select [(ngModel)]="client.addresses[0].departmentID" (ngModelChange)="fillCitiesBySelectedDepartment($event)"
         placeholder="Departamento">
         <mat-option *ngFor="let d of departments" [value]="d.id">{{d.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field fxFlex>
-      <mat-select [(ngModel)]="client.address.cityID" [disabled]="!isDepartmentSelected" placeholder="Ciudad">
+      <mat-select [(ngModel)]="client.addresses[0].cityID" [disabled]="!isDepartmentSelected" placeholder="Ciudad">
         <mat-option *ngFor="let c of cities" [value]="c.id">{{c.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -46,7 +49,7 @@
 
   <div fxLayout="row-reverse" fxLayoutGap="20px">
     <button *ngIf="!isEditMode" (click)="saveClient()">Guardar</button>
-    <button *ngIf="isEditMode" (click)="editClient()">Editar</button>
+    <button *ngIf="isEditMode" (click)="editClient()">Guardar</button>
     <button (click)="goBack()">Cancelar</button>
   </div>
 

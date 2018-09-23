@@ -7,5 +7,6 @@ export class Client {
   lastName: string;
   telephone1: string;
   telephone2: string;
-  address: Address;
+  email: string;
+  addresses: Address[];
 }

@@ -33,8 +33,6 @@ export class ClientCreateEditComponent implements OnInit {
     private location: Location,
     private clientService: ClientService,
     private locationService: LocationService) {
-      this.client = new Client();
-       this.client.address = new Address();
     }
 
   ngOnInit() {
@@ -44,6 +42,10 @@ export class ClientCreateEditComponent implements OnInit {
       this.clientService.getClientById(this.selectedId).subscribe((client) => {
           this.client = client;
       });
+    } else {
+      this.client = new Client();
+      this.client.addresses = [];
+      this.client.addresses.push(new Address());
     }
   }
 
@@ -64,7 +66,7 @@ export class ClientCreateEditComponent implements OnInit {
   }
 
   fillCitiesBySelectedDepartment(evet: any) {
-    this.locationService.getCitiesByDepartmentID(this.departmentIdSelected).subscribe(cities => {
+    this.locationService.getCitiesByDepartmentID(evet).subscribe(cities => {
       this.isDepartmentSelected = true;
       this.cities = cities;
     });
