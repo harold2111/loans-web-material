@@ -1,7 +1,7 @@
-<mat-card class="example-card" fxLayout="column">  
+<mat-card class="wrapper-mat-card" fxLayout="column">
   <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
     <mat-card-title>
-      Clientes
+      <h2 class="mat-h2">Clientes</h2>
     </mat-card-title>
     <div>
       <button (click)="openCreateClientComponent()" mat-raised-button color="accent">
@@ -26,7 +26,7 @@
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
 
-    <mat-table #table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+    <mat-table #table [dataSource]="data" class="wrapper-mat-table" matSort matSortActive="created" matSortDisableClear
       matSortDirection="asc">
       <!-- identification Column -->
       <ng-container matColumnDef="identification">
