@@ -1,35 +1,34 @@
-<mat-sidenav-container class="main-container">
-  <mat-sidenav #mainSidenav class="main-sidenav" mode="side" opened="true">
-    <mat-toolbar>
-      <span class="brand-text">H&E Application</span>
-    </mat-toolbar>
-    <mat-divider></mat-divider>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
-        <mat-icon matListIcon>dashboard</mat-icon>
-        <span matLine>Dashboard</span>
-      </a>
-      <a mat-list-item [routerLink]="['/client']" [routerLinkActive]="['router-link-active']">
-        <mat-icon matListIcon>people</mat-icon>
-        <span matLine>Clientes</span>
-      </a>
-      <a mat-list-item [routerLink]="['/test']" [routerLinkActive]="['router-link-active']">
-        <mat-icon matListIcon>build</mat-icon>
-        <span matLine>Test</span>
-      </a>
-      <a mat-list-item [routerLink]="['/test']" [routerLinkActive]="['router-link-active']">
-        <mat-icon matListIcon>build</mat-icon>
-        <span matLine>Test</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar></mat-toolbar>
-    <div class="main-content">
-      <mat-card>
-        <router-outlet></router-outlet>         
-      </mat-card>
-      <app-messages></app-messages>
-    </div>    
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="wrapper-container">
+  <mat-toolbar color="primary" class="wrapper-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>apps</mat-icon>
+    </button>
+    <div routerLink="/" class="pl-15">HyE Loans</div>
+    <span class="spacer"></span>
+  </mat-toolbar>
+  <mat-sidenav-container class="wrapper-sidenav-container">
+    <mat-sidenav #snav class="wrapper-sidenav" mode="side" opened="true">
+      <mat-nav-list>
+        <a mat-list-item class="mat-nav-list-item" routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
+          <mat-icon matListIcon class="icon-white">dashboard</mat-icon>
+          <span matLine>Dashboard</span>
+        </a>
+        <a mat-list-item class="mat-nav-list-item" [routerLink]="['/client']" [routerLinkActive]="['router-link-active']">
+          <mat-icon matListIcon class="icon-white">people</mat-icon>
+          <span matLine>Clientes</span>
+        </a>
+        <a mat-list-item class="mat-nav-list-item" [routerLink]="['/test']" [routerLinkActive]="['router-link-active']">
+          <mat-icon matListIcon>build</mat-icon>
+          <span matLine>Test</span>
+        </a>
+        <a mat-list-item class="mat-nav-list-item" [routerLink]="['/test']" [routerLinkActive]="['router-link-active']">
+          <mat-icon matListIcon>build</mat-icon>
+          <span matLine>Test</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-outlet">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
