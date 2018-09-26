@@ -1,16 +1,17 @@
-<mat-card class="example-card" fxLayout="column">  
-  <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
-    <mat-card-title>
-      Clientes
+<mat-card class="wrapper-mat-card" fxLayout="column">
+
+  <div class="wrapper-mat-card-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-title class="mat-card-title">
+        Clientes
     </mat-card-title>
     <div>
-      <button (click)="openCreateClientComponent()" mat-raised-button color="warn">
+      <button (click)="openCreateClientComponent()" mat-raised-button color="accent">
         <mat-icon>add</mat-icon>
         <span>Nuevo Cliente</span>
       </button>
     </div>
-  </mat-card-header>
-
+  </div>
+  
   <mat-card-content fxLayout="column">
     <mat-toolbar-row>
       <mat-form-field class="search-row" floatPlaceholder="never" fxFlex="70">
@@ -26,7 +27,7 @@
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
 
-    <mat-table #table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+    <mat-table #table [dataSource]="data" class="wrapper-mat-table" matSort matSortActive="created" matSortDisableClear
       matSortDirection="asc">
       <!-- identification Column -->
       <ng-container matColumnDef="identification">
