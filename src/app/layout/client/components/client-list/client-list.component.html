@@ -1,7 +1,8 @@
 <mat-card class="wrapper-mat-card" fxLayout="column">
-  <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
-    <mat-card-title>
-      <h2 class="mat-h2">Clientes</h2>
+
+  <div class="wrapper-mat-card-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-title class="mat-card-title">
+        Clientes
     </mat-card-title>
     <div>
       <button (click)="openCreateClientComponent()" mat-raised-button color="accent">
@@ -9,8 +10,8 @@
         <span>Nuevo Cliente</span>
       </button>
     </div>
-  </mat-card-header>
-
+  </div>
+  
   <mat-card-content fxLayout="column">
     <mat-toolbar-row>
       <mat-form-field class="search-row" floatPlaceholder="never" fxFlex="70">
