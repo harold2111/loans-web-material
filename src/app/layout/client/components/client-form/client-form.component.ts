@@ -17,15 +17,14 @@ import { City } from '../../../shared/model/city';
 })
 export class ClientFormComponent implements OnInit {
 
-  private client: Client;
-  private departments: Department[];
-  private cities: City[];
-  private departmentIdSelected: number;
-
-  private isDepartmentSelected = false;
-
   private isEditMode = false;
-  private selectedId: number;
+
+  private clientModel: Client = new Client();
+  private selecteClientdId: number;
+  private addressesModel: Address[] = [];
+
+  private departments: Department[];
+  private citiesByDeparmentSelected: City[][] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -39,13 +38,11 @@ export class ClientFormComponent implements OnInit {
     this.getEditModeVariables();
     this.loadDepartments();
     if (this.isEditMode) {
-      this.clientService.getClientById(this.selectedId).subscribe((client) => {
-          this.client = client;
+      this.clientService.getClientById(this.selecteClientdId).subscribe((client) => {
+          this.clientModel = client;
       });
     } else {
-      this.client = new Client();
-      this.client.addresses = [];
-      this.client.addresses.push(new Address());
+      this.addressesModel.push(new Address());
     }
   }
 
@@ -60,29 +57,38 @@ export class ClientFormComponent implements OnInit {
       const id = params.get('id');
       if (id != null) {
         this.isEditMode = true;
-        this.selectedId = +id;
+        this.selecteClientdId = +id;
       }
     });
   }
 
-  fillCitiesBySelectedDepartment(evet: any) {
-    this.locationService.getCitiesByDepartmentID(evet).subscribe(cities => {
-      this.isDepartmentSelected = true;
-      this.cities = cities;
+  private fillCitiesBySelectedDepartment(index: number) {
+    const departmentID = this.addressesModel[index].departmentID;
+    this.locationService.getCitiesByDepartmentID(departmentID).subscribe(cities => {
+      this.citiesByDeparmentSelected[index] = cities;
     });
   }
 
-  onCancel(): void {
+  private onAddAddress() {
+    this.addressesModel.push(new Address());
+  }
+
+  private onRemoveddress(index: number) {
+    this.addressesModel.splice(index, 1);
+  }
+
+  private onCancel() {
     this.location.back();
   }
 
-  onSave(): void {
+  private onSave() {
     if (this.isEditMode) {
-      this.clientService.editClient(this.selectedId, this.client).subscribe(client => {
+      this.clientService.editClient(this.selecteClientdId, this.clientModel).subscribe(client => {
         this.location.back();
       });
     } else {
-      this.clientService.createClient(this.client).subscribe(client => {
+      this.clientModel.addresses = this.addressesModel;
+      this.clientService.createClient(this.clientModel).subscribe(client => {
         this.location.back();
       });
     }
