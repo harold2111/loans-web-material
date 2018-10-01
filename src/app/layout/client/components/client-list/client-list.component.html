@@ -2,7 +2,7 @@
 
   <div class="wrapper-mat-card-header" fxLayout="row" fxLayoutAlign="space-between center">
     <mat-card-title class="mat-card-title">
-        Clientes
+      Clientes
     </mat-card-title>
     <div>
       <button (click)="openCreateClientComponent()" mat-raised-button color="accent">
@@ -11,7 +11,7 @@
       </button>
     </div>
   </div>
-  
+
   <mat-card-content fxLayout="column">
     <mat-toolbar-row>
       <mat-form-field class="search-row" floatPlaceholder="never" fxFlex="70">
@@ -34,7 +34,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Identificación
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.identification }}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          <a class="table-routerLink" [routerLink]="['/client-view', row.id]">
+            {{row.identification}}
+          </a>
+        </mat-cell>
       </ng-container>
 
       <!-- firstName Column -->
@@ -67,7 +71,7 @@
             <mat-icon>more_horiz</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="edit(row.id)">Edit</button>
+            <button mat-menu-item (click)="onEdit(row.id)">Edit</button>
           </mat-menu>
         </mat-cell>
       </ng-container>

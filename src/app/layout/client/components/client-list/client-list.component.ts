@@ -55,7 +55,7 @@ export class ClientListComponent implements OnInit {
     this.router.navigate(['/client-form']);
   }
 
-  edit(id: number): void {
+  onEdit(id: number): void {
     this.router.navigate(['/client-form', id]);
   }
 }

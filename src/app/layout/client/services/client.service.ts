@@ -4,6 +4,7 @@ import { Client } from '../models/Client';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { MessageService } from '../../shared/services/message.service';
+import { Address } from '../models/address';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -56,6 +57,47 @@ export class ClientService {
       );
   }
 
+  getAddressesByClientID(clientID: number): Observable<Address[]> {
+    return this.http.get<Address[]>(this.backendUrl + '/clients/' + clientID + '/addresses')
+      .pipe(
+        tap(() => this.log('fetched addresses by clientID')),
+        catchError(this.handleError('getAddressesByClientID', []))
+      );
+  }
+
+  getAddressByClientIDAndAddressID(clientID: number, addressID: number): Observable<Address> {
+    return this.http.get<Address>(this.backendUrl + '/clients/' + clientID + '/addresses/' + addressID)
+      .pipe(
+        tap((addressReponse) => this.log('fetched addresses by clientID and AddressID')),
+        catchError(this.handleError('getAddressesByClientIDAndAddressID', new Address()))
+      );
+  }
+
+  createClientAddress(clientID: number, clientAddress: Address): Observable<Address> {
+    return this.http.post<Address>(this.backendUrl + '/clients/' + clientID + '/addresses', clientAddress)
+      .pipe(
+        tap((addressReponse) => this.log(`created client address id=${addressReponse.id}`)),
+        catchError(this.handleError('createClientAddress', clientAddress))
+      );
+  }
+
+  editClientAddress(clientID: number, addressID: number, clientAddress: Address): Observable<Address> {
+    return this.http.put<Address>(this.backendUrl + '/clients/' + clientID + '/addresses/' + addressID, clientAddress)
+      .pipe(
+        tap((addressReponse) => this.log(`updated client address id=${addressReponse.id}`)),
+        catchError(this.handleError('editClientAddress', clientAddress))
+      );
+  }
+
+  deleteClientAddress(clientID: number, addressID: number): Observable<Object>  {
+    return this.http.delete(this.backendUrl + '/clients/' + clientID + '/addresses/' + addressID)
+    .pipe(
+      tap((addressReponse) => this.log(`deleted client addres=${clientID}`)),
+      catchError(this.handleError('deleteClientAddress', new Address()))
+    );
+  }
+
+
   /**
  * Handle Http operation that failed.
  * Let the app continue.
@@ -81,7 +123,8 @@ export class ClientService {
 
   /** Log a ClientService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('ClientService: ' + message);
+    // this.messageService.add('ClientService: ' + message);
+    console.log('ClientService: ' + message);
   }
 
 }

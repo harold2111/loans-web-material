@@ -19,8 +19,8 @@ export class ClientFormComponent implements OnInit {
 
   private isEditMode = false;
 
-  private clientModel: Client = new Client();
   private selecteClientdId: number;
+  private clientModel: Client = new Client();
   private addressesModel: Address[] = [];
 
   private departments: Department[];
@@ -32,14 +32,14 @@ export class ClientFormComponent implements OnInit {
     private location: Location,
     private clientService: ClientService,
     private locationService: LocationService) {
-    }
+  }
 
   ngOnInit() {
-    this.getEditModeVariables();
+    this.getSelectedIDParameter();
     this.loadDepartments();
     if (this.isEditMode) {
       this.clientService.getClientById(this.selecteClientdId).subscribe((client) => {
-          this.clientModel = client;
+        this.clientModel = client;
       });
     } else {
       this.addressesModel.push(new Address());
@@ -52,7 +52,7 @@ export class ClientFormComponent implements OnInit {
     });
   }
 
-  private getEditModeVariables() {
+  private getSelectedIDParameter() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       if (id != null) {
