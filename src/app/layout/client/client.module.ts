@@ -16,17 +16,15 @@ import { ClientAddressFormComponent } from './components/client-address-form/cli
   imports: [
     CommonModule,
     FormsModule,
-    ClientRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ClientRoutingModule
   ],
   declarations: [
     ClientListComponent,
     ClientFormComponent,
     ClientViewComponent,
     ClientAddressFormComponent
-  ],
-  providers: [
   ]
 })
 export class ClientModule { }

@@ -2,12 +2,12 @@
 
   <div class="wrapper-mat-card-header" fxLayout="row" fxLayoutAlign="space-between center">
     <mat-card-title class="mat-card-title">
-      Clientes
+      Creditos
     </mat-card-title>
     <div>
       <button (click)="onCreate()" mat-raised-button color="accent">
         <mat-icon>add</mat-icon>
-        <span>Nuevo Cliente</span>
+        <span>Crear Credito</span>
       </button>
     </div>
   </div>
@@ -29,39 +29,68 @@
 
     <mat-table #table [dataSource]="data" class="wrapper-mat-table" matSort matSortActive="created" matSortDisableClear
       matSortDirection="asc">
-      <!-- identification Column -->
-      <ng-container matColumnDef="identification">
+      
+      <!-- id Column -->
+      <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Identificación
+          ID
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <a class="table-routerLink" [routerLink]="['/client-view', row.id]">
-            {{row.identification}}
+          <a class="table-routerLink" [routerLink]="['/loan-view', row.id]">
+            {{row.id}}
           </a>
         </mat-cell>
       </ng-container>
 
-      <!-- firstName Column -->
-      <ng-container matColumnDef="firstName">
+      <!-- principal Column -->
+      <ng-container matColumnDef="principal">
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Nombres
+          Principal
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.principal }}
+        </mat-cell>
       </ng-container>
 
-      <!-- lastName Column -->
-      <ng-container matColumnDef="lastName">
+      <!-- interestRatePeriod Column -->
+      <ng-container matColumnDef="interestRatePeriod">
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
-          Apellidos
+          Interest
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.interestRatePeriod }}
+        </mat-cell>
       </ng-container>
 
-      <!-- telephone1 Column -->
-      <ng-container matColumnDef="telephone1">
-        <mat-header-cell *matHeaderCellDef>Telefono</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.telephone1 }}</mat-cell>
+      <!-- periodNumbers Column -->
+      <ng-container matColumnDef="periodNumbers">
+        <mat-header-cell *matHeaderCellDef>
+          Numero de cuotas
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.periodNumbers }}
+        </mat-cell>
       </ng-container>
+
+      <!-- paymentAgreed Column -->
+      <ng-container matColumnDef="paymentAgreed">
+        <mat-header-cell *matHeaderCellDef>
+          Cuota
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.paymentAgreed }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- status Column -->
+      <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>
+            Estado
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.status }}
+          </mat-cell>
+        </ng-container>
 
       <!-- Options Column -->
       <ng-container matColumnDef="options">

@@ -13,7 +13,6 @@ const httpOptions = {
   })
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +22,8 @@ export class ClientService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ) {}
 
   getClients(): Observable<Client[]> {
     return this.http.get<Client[]>(this.backendUrl + '/clients')

@@ -7,9 +7,10 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'client' },
+      { path: '', redirectTo: 'dashboard' },
       { path: 'dashboard', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-      { path: 'client', loadChildren: './client/client.module#ClientModule' }
+      { path: 'client', loadChildren: './client/client.module#ClientModule' },
+      { path: 'loan', loadChildren: './loan/loan.module#LoanModule' }
     ]
   }
 ];

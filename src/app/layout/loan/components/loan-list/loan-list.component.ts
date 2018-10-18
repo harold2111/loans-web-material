@@ -1,20 +1,22 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
-import {merge, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import { ClientService } from '../../services/client.service';
-import { Router } from '@angular/router';
-import { Client } from '../../models/Client';
+import { merge, of as observableOf} from 'rxjs';
+import { startWith, switchMap, map, catchError } from 'rxjs/operators';
+import { LoanService } from '../../services/loan.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Loan } from '../../models/loan';
+
 
 @Component({
-  selector: 'app-client-list',
-  templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.scss'],
+  selector: 'app-loan-list',
+  templateUrl: './loan-list.component.html',
+  styleUrls: ['./loan-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ClientListComponent implements OnInit {
-  displayedColumns = ['identification', 'firstName', 'lastName', 'telephone1', 'options'];
-  data: Client[] = [];
+export class LoanListComponent implements OnInit {
+  displayedColumns = ['id', 'principal', 'interestRatePeriod', 'periodNumbers',
+                      'paymentAgreed', 'status', 'options'];
+  data: Loan[] = [];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -23,10 +25,12 @@ export class ClientListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private clientService: ClientService) {}
+    private loanService: LoanService
+  ) { }
 
-    ngOnInit() {
+  ngOnInit() {
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -36,7 +40,7 @@ export class ClientListComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.clientService.getClients();
+          return this.loanService.getLoans();
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -52,12 +56,11 @@ export class ClientListComponent implements OnInit {
   }
 
   onCreate(): void {
-    this.router.navigate(['/client/client-form']);
+    this.router.navigate(['/loan//loan-form']);
   }
 
   onEdit(id: number): void {
-    this.router.navigate(['/client/client-form', id]);
+    this.router.navigate(['/loan/loand/loan-form', id]);
   }
+
 }
-
-
