@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
+import { LoanService } from '../../services/loan.service';
+import { Balance } from '../../models/balance';
+import { Loan } from '../../models/loan';
 
 @Component({
   selector: 'app-loan-form',
@@ -9,15 +12,22 @@ import { Location } from '@angular/common';
 })
 export class LoanFormComponent implements OnInit {
 
+  displayedColumns = ['period', 'paymentDate', 'initialPrincipal', 'payment',
+                      'interestRatePeriod', 'toInterest', 'toPrincipal', 'finalPrincipal'];
+
   private isEditMode = false;
 
   private selectedLoanId: number;
 
+  private loanModel: Loan = new Loan();
+  private balanceModel: Balance[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
-  ) {}
+    private location: Location,
+    private loanService: LoanService
+  ) { }
 
   ngOnInit() {
     this.getSelectedIDParameter();
@@ -32,5 +42,12 @@ export class LoanFormComponent implements OnInit {
       }
     });
   }
+
+  private onSimulate() {
+    this.loanService.simulateLoan(this.loanModel).subscribe((result: Balance[]) => {
+      this.balanceModel = result;
+    });
+  }
+
 
 }

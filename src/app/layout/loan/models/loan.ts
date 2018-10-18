@@ -4,5 +4,5 @@ export class Loan {
   interestRatePeriod: number;
   periodNumbers: number;
   paymentAgreed: number;
-  state: string;
+  status: string;
 }

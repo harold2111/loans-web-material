@@ -4,6 +4,7 @@ import { MessageService } from '../../shared/services/message.service';
 import { Loan } from '../models/loan';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { Balance } from '../models/balance';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,6 +30,14 @@ export class LoanService {
       .pipe(
         tap(() => this.log('fetched loans')),
         catchError(this.handleError('getLoans', []))
+      );
+  }
+
+  simulateLoan(loan: Loan): Observable<Balance[]> {
+    return this.http.post<Balance[]>(this.backendUrl + '/loans/simulate', loan)
+      .pipe(
+        tap(createClientResponse => this.log('fetched simulate loans')),
+        catchError(this.handleError('simulateLoan', []))
       );
   }
 

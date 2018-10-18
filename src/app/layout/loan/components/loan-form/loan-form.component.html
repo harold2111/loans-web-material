@@ -1,3 +1,114 @@
-<p>
-  loan-form works!
-</p>
+<mat-card class="wrapper-mat-card" fxLayout="column">
+
+  <div class="wrapper-mat-card-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-title class="mat-card-title">
+      Crear Credito
+    </mat-card-title>
+  </div>
+
+  <mat-card-content fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field fxFlex="33">
+        <input type="number" matInput type="number"[(ngModel)]="loanModel.principal" placeholder="Principal" required>
+      </mat-form-field>
+      <mat-form-field fxFlex="33">
+        <input type="number" [(ngModel)]="loanModel.interestRatePeriod" matInput placeholder="Interes Periodo" required>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <input type="number" [(ngModel)]="loanModel.periodNumbers" matInput placeholder="No. Periodos" required>
+      </mat-form-field>
+      <!--mat-form-field fxFlex>
+        <input [(ngModel)]="loanModel.startDate" matInput placeholder="Fecha de inicio" required>
+      </mat-form-field -->
+    </div>
+
+    <mat-card-actions fxLayout="row-reverse">
+      <button (click)="onSimulate()" mat-raised-button color="accent">Simular</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="wrapper-mat-card" fxLayout="column">
+
+  <div class="wrapper-mat-card-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-card-title class="mat-card-title">
+      Tabla de amortización
+    </mat-card-title>
+  </div>
+
+  <mat-card-content fxLayout="column">
+
+    <mat-table #addressesTable [dataSource]="balanceModel" class="wrapper-mat-table" matSort matSortActive="created"
+      matSortDisableClear matSortDirection="asc">
+
+      <!-- period Column -->
+      <ng-container matColumnDef="period">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Cuota #
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.period}}</mat-cell>
+      </ng-container>
+
+      <!-- paymentDate Column -->
+      <ng-container matColumnDef="paymentDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Fecha Pago
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.paymentDate}}</mat-cell>
+      </ng-container>
+
+      <!-- initialPrincipal Column -->
+      <ng-container matColumnDef="initialPrincipal">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Saldo Inicial
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.initialPrincipal}}</mat-cell>
+      </ng-container>
+
+      <!-- payment Column -->
+      <ng-container matColumnDef="payment">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Pago
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.payment }}</mat-cell>
+      </ng-container>
+
+      <!-- interestRatePeriod Column -->
+      <ng-container matColumnDef="interestRatePeriod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Interes
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.interestRatePeriod }}</mat-cell>
+      </ng-container>
+
+      <!-- toInterest Column -->
+      <ng-container matColumnDef="toInterest">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Pago a Interes
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.toInterest }}</mat-cell>
+      </ng-container>
+
+      <!-- toPrincipal Column -->
+      <ng-container matColumnDef="toPrincipal">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Pago a Capital
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.toPrincipal }}</mat-cell>
+      </ng-container>
+
+      <!-- finalPrincipal Column -->
+      <ng-container matColumnDef="finalPrincipal">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
+          Saldo Final
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.finalPrincipal }}</mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </mat-card-content>
+</mat-card>
