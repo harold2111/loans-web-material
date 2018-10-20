@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { LoanService } from '../../services/loan.service';
 import { Balance } from '../../models/balance';
 import { Loan } from '../../models/loan';
+import { Amortization } from '../../models/amortization';
+import { LoanWithAmortizations } from '../../models/loan_with_amortizations';
 
 @Component({
   selector: 'app-loan-form',
@@ -20,7 +22,7 @@ export class LoanFormComponent implements OnInit {
   private selectedLoanId: number;
 
   private loanModel: Loan = new Loan();
-  private balanceModel: Balance[] = [];
+  private amortizationsModel: Amortization[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,8 +46,9 @@ export class LoanFormComponent implements OnInit {
   }
 
   private onSimulate() {
-    this.loanService.simulateLoan(this.loanModel).subscribe((result: Balance[]) => {
-      this.balanceModel = result;
+    this.loanService.simulateLoan(this.loanModel).subscribe((result: LoanWithAmortizations) => {
+      this.amortizationsModel = result.amortizations;
+      console.log(this.amortizationsModel)
     });
   }
 

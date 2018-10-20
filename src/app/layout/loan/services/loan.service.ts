@@ -5,6 +5,7 @@ import { Loan } from '../models/loan';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Balance } from '../models/balance';
+import { LoanWithAmortizations } from '../models/loan_with_amortizations';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -33,11 +34,11 @@ export class LoanService {
       );
   }
 
-  simulateLoan(loan: Loan): Observable<Balance[]> {
-    return this.http.post<Balance[]>(this.backendUrl + '/loans/simulate', loan)
+  simulateLoan(loan: Loan): Observable<LoanWithAmortizations> {
+    return this.http.post<LoanWithAmortizations>(this.backendUrl + '/loans/simulate', loan)
       .pipe(
         tap(createClientResponse => this.log('fetched simulate loans')),
-        catchError(this.handleError('simulateLoan', []))
+        catchError(this.handleError('simulateLoan', new LoanWithAmortizations()))
       );
   }
 
