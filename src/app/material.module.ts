@@ -30,6 +30,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatStepperModule,
+  MAT_DATE_LOCALE,
 } from '@angular/material';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -82,7 +83,11 @@ import {PortalModule} from '@angular/cdk/portal';
     ObserversModule,
     OverlayModule,
     PlatformModule,
-    PortalModule,
-  ]
+    PortalModule
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es-GB'},
+  ],
 })
+
 export class MaterialModule { }

@@ -1,11 +1,6 @@
 import { Amortization } from './amortization';
+import { Loan } from './loan';
 
-export class LoanWithAmortizations {
-  id: number;
-  principal: number;
-  interestRatePeriod: number;
-  periodNumbers: number;
-  paymentAgreed: number;
-  status: string;
+export class LoanWithAmortizations extends Loan {
   amortizations: Amortization[];
 }

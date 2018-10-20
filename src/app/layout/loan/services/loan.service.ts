@@ -4,7 +4,6 @@ import { MessageService } from '../../shared/services/message.service';
 import { Loan } from '../models/loan';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { Balance } from '../models/balance';
 import { LoanWithAmortizations } from '../models/loan_with_amortizations';
 
 const httpOptions = {

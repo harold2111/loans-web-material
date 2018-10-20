@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { LoanService } from '../../services/loan.service';
-import { Balance } from '../../models/balance';
 import { Loan } from '../../models/loan';
 import { Amortization } from '../../models/amortization';
 import { LoanWithAmortizations } from '../../models/loan_with_amortizations';
+import { Client } from 'src/app/layout/client/models/Client';
+import { ClientService } from 'src/app/layout/client/services/client.service';
 
 @Component({
   selector: 'app-loan-form',
@@ -15,12 +16,13 @@ import { LoanWithAmortizations } from '../../models/loan_with_amortizations';
 export class LoanFormComponent implements OnInit {
 
   displayedColumns = ['period', 'paymentDate', 'initialPrincipal', 'payment',
-                      'interestRatePeriod', 'toInterest', 'toPrincipal', 'finalPrincipal'];
+    'interestRatePeriod', 'toInterest', 'toPrincipal', 'finalPrincipal'];
 
-  private isEditMode = false;
+  private wasSimulationExecuted = false;
+  private selectedClientId: number;
+  private interestRatePeriod: number;
 
-  private selectedLoanId: number;
-
+  private clientsModel: Client[] = [];
   private loanModel: Loan = new Loan();
   private amortizationsModel: Amortization[] = [];
 
@@ -28,28 +30,37 @@ export class LoanFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private loanService: LoanService
+    private loanService: LoanService,
+    private clientService: ClientService
   ) { }
 
   ngOnInit() {
-    this.getSelectedIDParameter();
+    this.clientService.getClients().subscribe(
+      (clients: Client[]) => {
+        this.clientsModel = clients;
+      }
+    );
   }
 
-  private getSelectedIDParameter() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
-      if (id != null) {
-        this.isEditMode = true;
-        this.selectedLoanId = +id;
-      }
-    });
-  }
 
   private onSimulate() {
-    this.loanService.simulateLoan(this.loanModel).subscribe((result: LoanWithAmortizations) => {
-      this.amortizationsModel = result.amortizations;
-      console.log(this.amortizationsModel)
-    });
+    this.loanModel.interestRatePeriod = this.interestRatePeriod / 100;
+    this.loanModel.clientID = this.selectedClientId;
+    this.loanService.simulateLoan(this.loanModel).subscribe(
+      (result: LoanWithAmortizations) => {
+        this.amortizationsModel = result.amortizations;
+        this.wasSimulationExecuted = true;
+      },
+      err => {
+        this.wasSimulationExecuted = false;
+        this.amortizationsModel = [];
+      }
+    );
+  }
+
+  private onCreate() {
+    this.loanModel.interestRatePeriod = this.interestRatePeriod / 100;
+    this.loanModel.clientID = this.selectedClientId;
   }
 
 

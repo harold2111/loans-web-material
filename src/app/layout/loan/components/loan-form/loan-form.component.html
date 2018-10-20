@@ -7,22 +7,37 @@
   </div>
 
   <mat-card-content fxLayout="column">
+
     <div fxLayout="row" fxLayoutGap="20px">
       <mat-form-field fxFlex="33">
-        <input type="number" matInput type="number"[(ngModel)]="loanModel.principal" placeholder="Principal" required>
+        <mat-select [(ngModel)]="selectedClientId" placeholder="Cliente">
+          <mat-option *ngFor="let c of clientsModel" [value]="c.id">{{c.firstName + " " + c.lastName}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field fxFlex="33">
-        <input type="number" [(ngModel)]="loanModel.interestRatePeriod" matInput placeholder="Interes Periodo" required>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="loanModel.startDate" placeholder="Fecha inicio" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field fxFlex="33">
+        <input matInput type="text" placeholder="Principal" [ngModel]="loanModel.principal | currency:'USD':'symbol':'1.2'" 
+                                                            [ngModelOptions]="{updateOn:'blur'}" 
+                                                            (ngModelChange)="loanModel.principal=$event"/>
+      </mat-form-field>
+      <mat-form-field fxFlex="33">
+        <input type="text" [(ngModel)]="interestRatePeriod" matInput placeholder="Interes Periodo" required>
+        <span matSuffix>%&nbsp;</span>
       </mat-form-field>
       <mat-form-field fxFlex>
-        <input type="number" [(ngModel)]="loanModel.periodNumbers" matInput placeholder="No. Periodos" required>
+        <input matInput type="number" [(ngModel)]="loanModel.periodNumbers"  placeholder="No. Periodos" required>
       </mat-form-field>
-      <!--mat-form-field fxFlex>
-        <input [(ngModel)]="loanModel.startDate" matInput placeholder="Fecha de inicio" required>
-      </mat-form-field -->
     </div>
 
     <mat-card-actions fxLayout="row-reverse">
+      <button (click)="onCreate()" mat-raised-button color="accent" [disabled]="!wasSimulationExecuted || !selectedClientId">Crear</button>
       <button (click)="onSimulate()" mat-raised-button color="accent">Simular</button>
     </mat-card-actions>
   </mat-card-content>
@@ -54,7 +69,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Fecha Pago
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.paymentDate}}</mat-cell>
+        <mat-cell *matCellDef="let row">{{row.paymentDate | date: "dd/MM/yyyy"}}</mat-cell>
       </ng-container>
 
       <!-- initialPrincipal Column -->
@@ -62,7 +77,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Saldo Inicial
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.initialPrincipal}}</mat-cell>
+        <mat-cell *matCellDef="let row">{{row.initialPrincipal | currency:'USD':'symbol':'1.2'}}</mat-cell>
       </ng-container>
 
       <!-- payment Column -->
@@ -70,7 +85,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Pago
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.payment }}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.payment | currency:'USD':'symbol':'1.2'}}</mat-cell>
       </ng-container>
 
       <!-- interestRatePeriod Column -->
@@ -86,7 +101,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Pago a Interes
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.toInterest }}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.toInterest | currency:'USD':'symbol':'1.2'}}</mat-cell>
       </ng-container>
 
       <!-- toPrincipal Column -->
@@ -94,7 +109,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Pago a Capital
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.toPrincipal }}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.toPrincipal | currency:'USD':'symbol':'1.2'}}</mat-cell>
       </ng-container>
 
       <!-- finalPrincipal Column -->
@@ -102,7 +117,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">
           Saldo Final
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.finalPrincipal }}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.finalPrincipal | currency:'USD':'symbol':'1.2'}}</mat-cell>
       </ng-container>
 
 
