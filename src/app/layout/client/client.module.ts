@@ -9,7 +9,6 @@ import { ClientRoutingModule } from './client-routing.module';
 import { ClientListComponent } from './components/client-list/client-list.component';
 import { ClientFormComponent } from './components/client-form/client-form.component';
 import { ClientViewComponent } from './components/client-view/client-view.component';
-import { ClientAddressFormComponent } from './components/client-address-form/client-address-form.component';
 
 
 @NgModule({
@@ -23,8 +22,7 @@ import { ClientAddressFormComponent } from './components/client-address-form/cli
   declarations: [
     ClientListComponent,
     ClientFormComponent,
-    ClientViewComponent,
-    ClientAddressFormComponent
+    ClientViewComponent
   ]
 })
 export class ClientModule { }

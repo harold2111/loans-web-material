@@ -39,6 +39,12 @@ export class ClientFormComponent implements OnInit {
     if (this.isEditMode) {
       this.clientService.getClientById(this.selecteClientdId).subscribe((client) => {
         this.clientModel = client;
+        this.addressesModel = client.addresses;
+        for (let index = 0; index < this.addressesModel.length; index++) {
+          this.addressesModel.forEach(element => {
+            this.loadCitiesBySelectedDepartment(index);
+          });
+        }
       });
     } else {
       this.addressesModel.push(new Address());
@@ -61,11 +67,16 @@ export class ClientFormComponent implements OnInit {
     });
   }
 
-  private fillCitiesBySelectedDepartment(index: number) {
+  private loadCitiesBySelectedDepartment(index: number) {
     const departmentID = this.addressesModel[index].departmentID;
     this.locationService.getCitiesByDepartmentID(departmentID).subscribe(cities => {
       this.citiesByDeparmentSelected[index] = cities;
     });
+  }
+
+  private fillCitiesBySelectedDepartment(index: number) {
+    this.addressesModel[index].cityID = 0;
+    this.loadCitiesBySelectedDepartment(index);
   }
 
   private onAddAddress() {
