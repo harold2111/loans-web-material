@@ -18,16 +18,13 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
       <span class="fill-spacer"></span>
-      <button mat-icon-button>
-        <mat-icon>autorenew</mat-icon>
-      </button>
     </mat-toolbar-row>
 
     <div class="example-loading-shade" *ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
 
-    <mat-table #table [dataSource]="data" class="wrapper-mat-table" matSort matSortActive="created" matSortDisableClear
+    <mat-table #table [dataSource]="dataSource" class="wrapper-mat-table" matSort matSortActive="created" matSortDisableClear
       matSortDirection="asc">
       <!-- identification Column -->
       <ng-container matColumnDef="identification">
@@ -80,7 +77,6 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <mat-paginator #paginator [length]="resultsLength" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[25, 50, 100]">
-    </mat-paginator>
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
   </mat-card-content>
 </mat-card>

@@ -30,9 +30,6 @@ export class ClientViewComponent implements OnInit {
     this.clientService.getClientById(this.selectedClientdID).subscribe((client) => {
       this.clientModel = client;
     });
-    this.clientService.getAddressesByClientID(this.selectedClientdID).subscribe((addreses) => {
-      this.addressesModel = addreses;
-    });
   }
 
   private getSelectedClientIDParameter() {
@@ -50,14 +47,6 @@ export class ClientViewComponent implements OnInit {
 
   onCreateAddress() {
     this.router.navigate(['/client-address-form', { id: this.selectedClientdID }]);
-  }
-
-  onDeleteAddress(addressID: number) {
-    this.clientService.deleteClientAddress(this.selectedClientdID, addressID).subscribe((object) => {
-      this.clientService.getAddressesByClientID(this.selectedClientdID).subscribe((addreses) => {
-        this.addressesModel = addreses;
-      });
-    });
   }
 
 }

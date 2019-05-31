@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import {MatPaginator, MatSort} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { ClientService } from '../../services/client.service';
@@ -14,7 +14,7 @@ import { Client } from '../../models/Client';
 })
 export class ClientListComponent implements OnInit {
   displayedColumns = ['identification', 'firstName', 'lastName', 'telephone1', 'options'];
-  data: Client[] = [];
+  dataSource: MatTableDataSource<Client>;
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -27,28 +27,25 @@ export class ClientListComponent implements OnInit {
     private clientService: ClientService) {}
 
     ngOnInit() {
-
-    // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.clientService.getClients();
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
+      this.isLoadingResults = true;
+      this.clientService.getClients().subscribe(
+        Clients => {
+          this.dataSource = new MatTableDataSource(Clients);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
           this.isLoadingResults = false;
-          this.resultsLength = data.length;
-          return data;
-        }),
-        catchError(() => {
+        },
+        error => {
           this.isLoadingResults = false;
-          return observableOf([]);
-        })
-      ).subscribe(data => this.data = data);
+        }
+      );
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   onCreate(): void {
